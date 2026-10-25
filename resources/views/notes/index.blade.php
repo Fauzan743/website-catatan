@@ -3,127 +3,470 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catatan Saya</title>
+
+    <title>Website Catatan Fauzan Maulana</title>
 
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background: #f4f6f8;
             margin: 0;
-            padding: 40px;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f5f5;
+            color: #171717;
         }
 
-        .container {
-            max-width: 900px;
+        /* NAVBAR */
+        .navbar {
+            background: #111111;
+            color: white;
+            padding: 18px 25px;
+        }
+
+        .nav-content {
+            max-width: 950px;
             margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        h1 {
-            margin-bottom: 20px;
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+            font-size: 18px;
         }
 
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: #ff2d20;
+            border-radius: 9px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .laravel {
+            color: #ff2d20;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        /* CONTAINER */
+        .container {
+            max-width: 950px;
+            margin: auto;
+            padding: 45px 20px;
+        }
+
+        /* HEADER */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 34px;
+            letter-spacing: -1px;
+        }
+
+        /* BUTTON */
         .btn {
             display: inline-block;
-            padding: 10px 16px;
-            background: #2563eb;
-            color: white;
-            text-decoration: none;
-            border-radius: 6px;
+            padding: 11px 16px;
+            border-radius: 8px;
             border: none;
+            text-decoration: none;
             cursor: pointer;
+            font-size: 13px;
+            font-weight: bold;
+            transition: 0.2s;
         }
 
-        .success {
-            background: #d1fae5;
-            color: #065f46;
-            padding: 12px;
-            margin: 20px 0;
-            border-radius: 6px;
+        .btn-primary {
+            background: #ff2d20;
+            color: white;
+            box-shadow: 0 5px 15px rgba(255, 45, 32, 0.25);
+        }
+
+        .btn-primary:hover {
+            background: #e9271b;
+            transform: translateY(-2px);
+        }
+
+        /* SECTION */
+        .section-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .section-title h2 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .count {
+            color: #999;
+            font-size: 12px;
+        }
+
+        /* NOTES */
+        .notes {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
         }
 
         .card {
             background: white;
+            border-radius: 12px;
             padding: 20px;
-            margin-top: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border: 1px solid #e5e5e5;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: 0.2s;
+            position: relative;
+            overflow: hidden;
         }
 
-        .card h2 {
-            margin-top: 0;
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: #ff2d20;
         }
 
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.09);
+        }
+
+        .card-head {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .card h3 {
+            margin: 0;
+            font-size: 19px;
+            word-break: break-word;
+        }
+
+        .icon {
+            width: 38px;
+            height: 38px;
+            background: #fff1f0;
+            color: #ff2d20;
+            border-radius: 9px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .content {
+            color: #525252;
+            font-size: 14px;
+            line-height: 1.7;
+            margin: 17px 0;
+            white-space: pre-line;
+            word-break: break-word;
+        }
+
+        .date {
+            color: #a3a3a3;
+            font-size: 11px;
+            border-top: 1px solid #eeeeee;
+            padding-top: 12px;
+        }
+
+        /* ACTIONS */
         .actions {
+            display: flex;
+            gap: 8px;
             margin-top: 15px;
         }
 
         .edit {
-            background: #f59e0b;
+            background: #fff1f0;
+            color: #e1261c;
+        }
+
+        .edit:hover {
+            background: #ffe1de;
         }
 
         .delete {
-            background: #dc2626;
+            background: #171717;
+            color: white;
+        }
+
+        .delete:hover {
+            background: #ff2d20;
         }
 
         .actions form {
             display: inline;
+        }
+
+        /* EMPTY */
+        .empty {
+            background: white;
+            border: 1px solid #e5e5e5;
+            border-radius: 12px;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .empty-icon {
+            width: 60px;
+            height: 60px;
+            margin: auto auto 15px;
+            background: #fff1f0;
+            color: #ff2d20;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+        }
+
+        .empty h2 {
+            margin: 0 0 7px;
+            font-size: 20px;
+        }
+
+        .empty p {
+            color: #999;
+            font-size: 13px;
+            margin: 0;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            margin-top: 45px;
+            padding: 20px;
+            color: #999;
+            font-size: 11px;
+        }
+
+        footer span {
+            color: #ff2d20;
+            font-weight: bold;
+        }
+
+        /* MOBILE */
+        @media (max-width: 700px) {
+
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .btn-primary {
+                width: 100%;
+                text-align: center;
+            }
+
+            .notes {
+                grid-template-columns: 1fr;
+            }
+
+            .laravel {
+                display: none;
+            }
+
+            .header h1 {
+                font-size: 29px;
+            }
         }
     </style>
 </head>
 
 <body>
 
-<div class="container">
+    <!-- NAVBAR -->
+    <nav class="navbar">
 
-    <h1>📝 Catatan Saya</h1>
+        <div class="nav-content">
 
-    <a href="{{ route('notes.create') }}" class="btn">
-        + Tambah Catatan
-    </a>
+            <div class="logo">
 
-    @if(session('success'))
-        <div class="success">
-            {{ session('success') }}
-        </div>
-    @endif
+                <div class="logo-icon">
+                    L
+                </div>
 
-    @forelse($notes as $note)
+                <div>
+                    Website Catatan
+                </div>
 
-        <div class="card">
+            </div>
 
-            <h2>{{ $note->title }}</h2>
-
-            <p>{{ $note->content }}</p>
-
-            <div class="actions">
-
-                <a href="{{ route('notes.edit', $note->id) }}" class="btn edit">
-                    Edit
-                </a>
-
-                <form action="{{ route('notes.destroy', $note->id) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-
-                    <button type="submit" class="btn delete"
-                        onclick="return confirm('Yakin ingin menghapus catatan ini?')">
-                        Hapus
-                    </button>
-                </form>
-
+            <div class="laravel">
+                ● POWERED BY LARAVEL
             </div>
 
         </div>
 
-    @empty
+    </nav>
 
-        <div class="card">
-            <p>Belum ada catatan.</p>
+
+    <!-- MAIN -->
+    <main class="container">
+
+        <!-- HEADER -->
+        <div class="header">
+
+            <h1>
+                Catatan Saya
+            </h1>
+
+            <a
+                href="{{ route('notes.create') }}"
+                class="btn btn-primary"
+            >
+                + Tambah Catatan
+            </a>
+
         </div>
 
-    @endforelse
 
-</div>
+        <!-- SECTION -->
+        <div class="section-title">
+
+            <h2>
+                Semua Catatan
+            </h2>
+
+            <div class="count">
+                {{ $notes->count() }} catatan
+            </div>
+
+        </div>
+
+
+        <!-- NOTES -->
+        @if($notes->count() > 0)
+
+            <div class="notes">
+
+                @foreach($notes as $note)
+
+                    <div class="card">
+
+                        <div class="card-head">
+
+                            <h3>
+                                {{ $note->title }}
+                            </h3>
+
+                            <div class="icon">
+                                📝
+                            </div>
+
+                        </div>
+
+
+                        <div class="content">
+                            {{ $note->content }}
+                        </div>
+
+
+                        <div class="date">
+
+                            Dibuat:
+                            {{ $note->created_at
+                                ? $note->created_at->format('d M Y, H:i')
+                                : '-'
+                            }}
+
+                        </div>
+
+
+                        <div class="actions">
+
+                            <a
+                                href="{{ route('notes.edit', $note->id) }}"
+                                class="btn edit"
+                            >
+                                ✎ Edit
+                            </a>
+
+
+                            <form
+                                action="{{ route('notes.destroy', $note->id) }}"
+                                method="POST"
+                            >
+
+                                @csrf
+                                @method('DELETE')
+
+                                <button
+                                    type="submit"
+                                    class="btn delete"
+                                    onclick="return confirm('Yakin ingin menghapus catatan ini?')"
+                                >
+                                    🗑 Hapus
+                                </button>
+
+                            </form>
+
+                        </div>
+
+                    </div>
+
+                @endforeach
+
+            </div>
+
+        @else
+
+            <!-- EMPTY -->
+            <div class="empty">
+
+                <div class="empty-icon">
+                    📝
+                </div>
+
+                <h2>
+                    Belum ada catatan
+                </h2>
+
+                <p>
+                    Yuk buat catatan pertama kamu.
+                </p>
+
+            </div>
+
+        @endif
+
+
+        <!-- FOOTER -->
+        <footer>
+
+            Website Catatan Fauzan Maulana
+            • Dibuat dengan
+            <span>Laravel</span>
+
+        </footer>
+
+    </main>
 
 </body>
 </html>
