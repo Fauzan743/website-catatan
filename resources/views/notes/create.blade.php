@@ -329,7 +329,7 @@
 
                 <p class="subtitle">
                     Buat catatan baru dan simpan informasi penting
-                    kamu di dalam aplikasi.
+                    kamu.
                 </p>
 
             </div>
