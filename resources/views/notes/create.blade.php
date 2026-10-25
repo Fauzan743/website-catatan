@@ -375,7 +375,7 @@
                         id="title"
                         name="title"
                         value="{{ old('title') }}"
-                        placeholder="Contoh: Belajar Laravel"
+                        placeholder="Tulis Judul Catatan"
                         required
                     >
 
