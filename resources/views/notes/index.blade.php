@@ -202,6 +202,17 @@
             margin-top: 15px;
         }
 
+        /* READ */
+        .read {
+            background: #f1f1f1;
+            color: #333333;
+        }
+
+        .read:hover {
+            background: #e2e2e2;
+        }
+
+        /* EDIT */
         .edit {
             background: #fff1f0;
             color: #e1261c;
@@ -211,6 +222,7 @@
             background: #ffe1de;
         }
 
+        /* DELETE */
         .delete {
             background: #171717;
             color: white;
@@ -294,6 +306,10 @@
 
             .header h1 {
                 font-size: 29px;
+            }
+
+            .actions {
+                flex-wrap: wrap;
             }
         }
     </style>
@@ -399,8 +415,19 @@
                         </div>
 
 
+                        <!-- ACTIONS -->
                         <div class="actions">
 
+                            <!-- READ -->
+                            <a
+                                href="{{ route('notes.show', $note->id) }}"
+                                class="btn read"
+                            >
+                                👁 Baca
+                            </a>
+
+
+                            <!-- EDIT -->
                             <a
                                 href="{{ route('notes.edit', $note->id) }}"
                                 class="btn edit"
@@ -409,6 +436,7 @@
                             </a>
 
 
+                            <!-- DELETE -->
                             <form
                                 action="{{ route('notes.destroy', $note->id) }}"
                                 method="POST"

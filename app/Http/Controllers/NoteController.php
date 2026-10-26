@@ -35,6 +35,11 @@ class NoteController extends Controller
             ->with('success', 'Catatan berhasil ditambahkan.');
     }
 
+    public function show(Note $note)
+    {
+        return view('notes.show', compact('note'));
+    }
+
     public function edit(Note $note)
     {
         return view('notes.edit', compact('note'));
